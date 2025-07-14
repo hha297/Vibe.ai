@@ -1,28 +1,29 @@
-import type { Metadata } from "next";
+import type { Metadata } from 'next';
 
-import { Space_Grotesk } from "next/font/google";
-import "./globals.css";
+import { Space_Grotesk } from 'next/font/google';
+import './globals.css';
+import { TRPCReactProvider } from '@/trpc/client';
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+        subsets: ['latin'],
+        weight: ['400', '500', '600', '700'],
 });
 
 export const metadata: Metadata = {
-  title: "Meet.ai",
-  description: "Meet.ai - Your AI Meeting Assistant",
+        title: 'Vibe AI',
+        description: 'Vibe AI',
 };
 
 export default function RootLayout({
-  children,
+        children,
 }: Readonly<{
-  children: React.ReactNode;
+        children: React.ReactNode;
 }>) {
-  return (
-    <html lang="en">
-      <body className={`${spaceGrotesk.className} antialiased`}>
-        {children}
-      </body>
-    </html>
-  );
+        return (
+                <TRPCReactProvider>
+                        <html lang="en">
+                                <body className={`${spaceGrotesk.className} antialiased`}>{children}</body>
+                        </html>
+                </TRPCReactProvider>
+        );
 }
